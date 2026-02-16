@@ -1,0 +1,233 @@
+/* ================================= */
+/* Dashboard Container */
+/* ================================= */
+body {
+  overflow-x: hidden;
+}
+
+.Dashboard {
+  flex: 1;
+  padding: 40px 60px 30px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  overflow-y: auto;
+  color: #e5e7eb;
+}
+
+
+/* ================================= */
+/* Header Row */
+/* ================================= */
+
+.HeaderRow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 110px;
+}
+
+
+/* ================================= */
+/* Search Wrapper */
+/* ================================= */
+
+.SearchWrapper {
+  position: relative;
+  width: 340px;
+  transition: width 0.3s ease;
+}
+
+/* Optional expand effect */
+.SearchWrapper.open {
+  width: 400px;
+}
+
+
+/* ================================= */
+/* Search Input */
+/* ================================= */
+
+.SearchInput {
+  width: 100%;
+  padding: 14px 50px 14px 22px; /* right padding for icon */
+  border-radius: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e5e7eb;
+  font-size: 15px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.SearchInput::placeholder {
+  color: #9ca3af;
+}
+
+.SearchInput:focus {
+  border-color: #6d5dfc;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ================================= */
+/* Icon Inside Input */
+/* ================================= */
+
+.SearchIconInside {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #e5e7eb;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.SearchIconInside:hover {
+  color: #ffffff;
+}
+
+
+/* ================================= */
+/* Section Box Styling */
+/* ================================= */
+
+.Box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 30px;
+  font-size: 18px;
+  backdrop-filter: blur(6px);
+  transition: 0.2s ease;
+}
+
+.Box:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+
+/* ================================= */
+/* Wireframe Section Heights */
+/* ================================= */
+
+.TopBar {
+  height: 110px;
+}
+
+.KpiRow {
+  height: 110px;
+}
+
+.PortfolioSection {
+  height: 220px;
+}
+
+.ScreenerSection {
+  height: 220px;
+}
+
+.TwinSection {
+  height: 240px;
+}
+
+.RegimeSection {
+  height: 260px;
+}
+.PerformanceCard {
+  margin-top: 30px;
+  padding: 30px;
+  border-radius: 18px;
+
+  background: linear-gradient(
+    145deg,
+    rgba(15, 23, 42, 0.9),
+    rgba(30, 41, 59, 0.8)
+  );
+
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+
+  box-shadow:
+    0 0 40px rgba(59, 130, 246, 0.08),
+    inset 0 0 60px rgba(59, 130, 246, 0.05);
+}
+
+/* Header */
+.CardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.TickerBlock {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.TickerSymbol {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.RegimeTag {
+  padding: 6px 14px;
+  font-size: 12px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.RegimeTag.Bull {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.RegimeTag.Bear {
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+}
+
+.PriceBlock {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+/* Performance Row */
+.PerformanceRow {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+}
+
+.Metric {
+  flex: 1;
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.MetricLabel {
+  font-size: 13px;
+  color: #9ca3af;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.MetricValue {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.MetricValue.positive {
+  color: #22c55e;
+}
+
+.MetricValue.negative {
+  color: #ef4444;
+}
+

@@ -1,0 +1,59 @@
+.Sidebar {
+  width: 60px;
+  color: white;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  padding: 20px 10px;
+}
+
+
+.Sidebar.open {
+  width: 220px;
+}
+
+button{
+    top:100px;
+}
+.menu {
+  list-style: none;      /* removes bullets */
+  padding: 0;
+  margin-top: 40px;
+}
+.menu li {
+  padding: 12px 15px;
+  margin: 8px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+.menu li:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+  transform: translateX(4px);
+}
+.menu li {
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 0.3px;
+}
+/* Search Icon */
+.SearchIcon {
+  position: absolute;
+  top: 25px;          /* space from top */
+  right: 35px;        /* space from right */
+  font-size: 20px;
+  color: #e5e7eb;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+/* Hover effect */
+.SearchIcon:hover {
+  color: #a78bfa;      /* subtle purple */
+  transform: scale(1.1);
+}
+
+/* Click effect */
+.SearchIcon:active {
+  transform: scale(0.95);
+}
