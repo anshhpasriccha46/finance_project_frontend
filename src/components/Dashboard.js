@@ -8,7 +8,6 @@ class Dashboard extends Component {
     super(props);
 
     this.state = {
-      isSearchOpen: false,
       searchValue: "",
       stockData: null,
       loading: false,
@@ -18,30 +17,59 @@ class Dashboard extends Component {
     this.searchRef = createRef();
   }
 
-  /* ================= Search Toggle ================= */
-
-  handleSearchToggle = () => {
-    this.setState(
-      (prevState) => ({
-        isSearchOpen: !prevState.isSearchOpen
-      }),
-      () => {
-        if (this.state.isSearchOpen && this.searchRef.current) {
-          this.searchRef.current.focus();
-        }
-      }
-    );
-  };
-
   handleInputChange = (e) => {
     this.setState({ searchValue: e.target.value });
   };
+renderCircle = (value) => {
+  const radius = 60;
+  const circumference = 2 * Math.PI * radius;
 
-  /* ================= API CALL ================= */
+  // 👇 THIS is where you use it
+  const normalized = Math.min(Math.abs(value), 100);
+  const strokeDashoffset =
+    circumference - (normalized / 100) * circumference;
+
+  const color = value > 0 ? "#22c55e" : "#ef4444";
+
+  return (
+    <svg width="150" height="150">
+      <circle
+        cx="75"
+        cy="75"
+        r={radius}
+        stroke="#1f2937"
+        strokeWidth="12"
+        fill="none"
+      />
+      <circle
+        cx="75"
+        cy="75"
+        r={radius}
+        stroke={color}
+        strokeWidth="12"
+        fill="none"
+        strokeDasharray={circumference}
+        strokeDashoffset={strokeDashoffset}
+        strokeLinecap="round"
+        transform="rotate(-90 75 75)"
+      />
+      <text
+        x="50%"
+        y="50%"
+        dominantBaseline="middle"
+        textAnchor="middle"
+        fill="#e5e7eb"
+        fontSize="18"
+        fontWeight="600"
+      >
+        {value.toFixed(2)}%
+      </text>
+    </svg>
+  );
+};
 
   fetchStockData = async () => {
     const { searchValue } = this.state;
-
     if (!searchValue.trim()) return;
 
     try {
@@ -74,16 +102,10 @@ class Dashboard extends Component {
     }
   };
 
-  /* ================= RENDER ================= */
-
   render() {
-    const {
-      isSearchOpen,
-      searchValue,
-      stockData,
-      loading,
-      error
-    } = this.state;
+    const { searchValue, stockData, loading, error } = this.state;
+
+    const circumference = 2 * Math.PI * 38; // r = 38
 
     const alpha =
       stockData &&
@@ -95,9 +117,9 @@ class Dashboard extends Component {
     return (
       <div className="Dashboard">
 
-        {/* ================= Header Row ================= */}
+        {/* ================= Search Header ================= */}
         <div className="HeaderRow">
-          <div className={`SearchWrapper ${isSearchOpen ? "open" : ""}`}>
+          <div className="SearchWrapper">
 
             <input
               ref={this.searchRef}
@@ -124,70 +146,107 @@ class Dashboard extends Component {
         </div>
 
 
-        {/* ================= Loading State ================= */}
+        {/* ================= Loading ================= */}
         {loading && (
-          <div className="PerformanceCard">
-            Loading data...
-          </div>
+          <div className="Box">Loading...</div>
         )}
 
-
-        {/* ================= Error State ================= */}
+        {/* ================= Error ================= */}
         {error && (
-          <div className="PerformanceCard">
-            {error}
-          </div>
+          <div className="Box">{error}</div>
         )}
 
 
-        {/* ================= Performance Card ================= */}
+        {/* ================= Performance Section ================= */}
         {stockData && (
-          <div className="PerformanceCard">
+          <div className="PerformanceSection Box">
 
-            <div className="CardHeader">
-              <div className="TickerBlock">
-                <span className="TickerSymbol">
-                  {stockData.ticker}
-                </span>
+            <div className="SectionTitleMain">
+              PERFORMANCE SUMMARY
+            </div>
 
-                <span className={`RegimeTag ${stockData.latest_regime}`}>
-                  {stockData.latest_regime}
-                </span>
+            {/* Buy & Hold */}
+            <div className="MetricRow">
+              <div className="MetricLeft">
+                <div className="MetricTitle">Buy & Hold</div>
+                <div className="MetricSub">
+                  Passive investment return
+                </div>
               </div>
 
-              <div className="PriceBlock">
-                ${stockData.latest_price}
+              <div className="MetricRight">
+               <div className="MetricCircle">
+  {this.renderCircle(
+    stockData.buy_and_hold_return_percent
+  )}
+</div>
+
               </div>
             </div>
 
 
-            <div className="PerformanceRow">
-
-              <div className="Metric">
-                <div className="MetricLabel">Buy & Hold</div>
-                <div className="MetricValue positive">
-                  {stockData.buy_and_hold_return_percent}%
+            {/* Model Strategy */}
+            <div className="MetricRow">
+              <div className="MetricLeft">
+                <div className="MetricTitle">Model Strategy</div>
+                <div className="MetricSub">
+                  Regime-based trading system
                 </div>
               </div>
 
-              <div className="Metric">
-                <div className="MetricLabel">Model Strategy</div>
-                <div className="MetricValue positive">
-                  {stockData.model_strategy_return_percent}%
+              <div className="MetricRight">
+                <div className="CircularProgressLarge">
+                  <svg width="90" height="90">
+                    <circle
+                      className="ring-bg"
+                      strokeWidth="8"
+                      r="38"
+                      cx="45"
+                      cy="45"
+                    />
+                    <circle
+                      className="ring-fill blue"
+                      strokeWidth="8"
+                      r="38"
+                      cx="45"
+                      cy="45"
+                      style={{
+                        strokeDasharray: circumference,
+                        strokeDashoffset:
+                          circumference -
+                          (circumference *
+                            stockData.model_strategy_return_percent) /
+                            100
+                      }}
+                    />
+                  </svg>
+
+                  <div className="ring-text">
+                    {stockData.model_strategy_return_percent}%
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            {/* Alpha */}
+            <div className="MetricRow">
+              <div className="MetricLeft">
+                <div className="MetricTitle">Alpha</div>
+                <div className="MetricSub">
+                  Strategy vs passive
                 </div>
               </div>
 
-              <div className="Metric">
-                <div className="MetricLabel">Alpha</div>
+              <div className="MetricRight">
                 <div
-                  className={`MetricValue ${
+                  className={`AlphaValue ${
                     alpha >= 0 ? "positive" : "negative"
                   }`}
                 >
                   {alpha}%
                 </div>
               </div>
-
             </div>
 
           </div>

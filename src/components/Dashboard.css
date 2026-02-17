@@ -1,13 +1,12 @@
-/* ================================= */
-/* Dashboard Container */
-/* ================================= */
 body {
   overflow-x: hidden;
 }
 
+/* ================= Dashboard Layout ================= */
+
 .Dashboard {
   flex: 1;
-  padding: 40px 60px 30px 40px;
+  padding: 30px 60px 30px 40px;
   display: flex;
   flex-direction: column;
   gap: 25px;
@@ -15,53 +14,30 @@ body {
   color: #e5e7eb;
 }
 
-
-/* ================================= */
-/* Header Row */
-/* ================================= */
+/* ================= Search Header ================= */
 
 .HeaderRow {
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  height: 110px;
+  height: 70px;
 }
-
-
-/* ================================= */
-/* Search Wrapper */
-/* ================================= */
 
 .SearchWrapper {
   position: relative;
-  width: 340px;
-  transition: width 0.3s ease;
+  width: 320px;
 }
-
-/* Optional expand effect */
-.SearchWrapper.open {
-  width: 400px;
-}
-
-
-/* ================================= */
-/* Search Input */
-/* ================================= */
 
 .SearchInput {
   width: 100%;
-  padding: 14px 50px 14px 22px; /* right padding for icon */
-  border-radius: 40px;
+  padding: 9px 40px 9px 18px;
+  border-radius: 30px;
   border: 1px solid rgba(255, 255, 255, 0.15);
   background: rgba(255, 255, 255, 0.05);
   color: #e5e7eb;
-  font-size: 15px;
+  font-size: 14px;
   outline: none;
   transition: all 0.2s ease;
-}
-
-.SearchInput::placeholder {
-  color: #9ca3af;
 }
 
 .SearchInput:focus {
@@ -69,165 +45,114 @@ body {
   background: rgba(255, 255, 255, 0.08);
 }
 
-
-/* ================================= */
-/* Icon Inside Input */
-/* ================================= */
-
 .SearchIconInside {
   position: absolute;
-  right: 18px;
+  right: 14px;
   top: 50%;
   transform: translateY(-50%);
-  color: #e5e7eb;
   cursor: pointer;
-  transition: 0.2s ease;
 }
 
-.SearchIconInside:hover {
-  color: #ffffff;
+.SearchIconInside svg {
+  font-size: 16px;
 }
 
-
-/* ================================= */
-/* Section Box Styling */
-/* ================================= */
+/* ================= Box Styling ================= */
 
 .Box {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 18px;
   padding: 30px;
-  font-size: 18px;
   backdrop-filter: blur(6px);
-  transition: 0.2s ease;
 }
 
-.Box:hover {
-  border-color: rgba(255, 255, 255, 0.15);
-}
+/* ================= Performance Section ================= */
 
-
-/* ================================= */
-/* Wireframe Section Heights */
-/* ================================= */
-
-.TopBar {
-  height: 110px;
-}
-
-.KpiRow {
-  height: 110px;
-}
-
-.PortfolioSection {
-  height: 220px;
-}
-
-.ScreenerSection {
-  height: 220px;
-}
-
-.TwinSection {
-  height: 240px;
-}
-
-.RegimeSection {
-  height: 260px;
-}
-.PerformanceCard {
-  margin-top: 30px;
-  padding: 30px;
-  border-radius: 18px;
-
-  background: linear-gradient(
-    145deg,
-    rgba(15, 23, 42, 0.9),
-    rgba(30, 41, 59, 0.8)
-  );
-
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(12px);
-
-  box-shadow:
-    0 0 40px rgba(59, 130, 246, 0.08),
-    inset 0 0 60px rgba(59, 130, 246, 0.05);
-}
-
-/* Header */
-.CardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.SectionTitleMain {
+  font-size: 13px;
+  letter-spacing: 1px;
+  color: #9ca3af;
   margin-bottom: 30px;
 }
 
-.TickerBlock {
+.MetricRow {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
+  padding: 25px 0;
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
-.TickerSymbol {
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 1px;
+.MetricRow:first-of-type {
+  border-top: none;
 }
 
-.RegimeTag {
-  padding: 6px 14px;
-  font-size: 12px;
-  border-radius: 20px;
+.MetricLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.MetricTitle {
+  font-size: 18px;
   font-weight: 600;
 }
 
-.RegimeTag.Bull {
-  background: rgba(34, 197, 94, 0.15);
-  color: #22c55e;
-}
-
-.RegimeTag.Bear {
-  background: rgba(239, 68, 68, 0.15);
-  color: #ef4444;
-}
-
-.PriceBlock {
-  font-size: 28px;
-  font-weight: 700;
-}
-
-/* Performance Row */
-.PerformanceRow {
-  display: flex;
-  justify-content: space-between;
-  gap: 30px;
-}
-
-.Metric {
-  flex: 1;
-  padding: 20px;
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
-
-.MetricLabel {
+.MetricSub {
   font-size: 13px;
   color: #9ca3af;
-  margin-bottom: 8px;
-  letter-spacing: 0.5px;
 }
 
-.MetricValue {
-  font-size: 22px;
+/* ================= Circular Ring ================= */
+
+.CircularProgressLarge {
+  position: relative;
+  width: 90px;
+  height: 90px;
+}
+
+.ring-bg {
+  fill: transparent;
+  stroke: rgba(255,255,255,0.08);
+}
+
+.ring-fill {
+  fill: transparent;
+  stroke-linecap: round;
+  transform: rotate(-90deg);
+  transform-origin: center;
+  transition: stroke-dashoffset 0.6s ease;
+}
+
+.ring-fill.green {
+  stroke: #22c55e;
+}
+
+.ring-fill.blue {
+  stroke: #6d5dfc;
+}
+
+.ring-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* ================= Alpha ================= */
+
+.AlphaValue {
+  font-size: 26px;
   font-weight: 700;
 }
 
-.MetricValue.positive {
+.AlphaValue.positive {
   color: #22c55e;
 }
 
-.MetricValue.negative {
+.AlphaValue.negative {
   color: #ef4444;
 }
-
